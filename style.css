@@ -1,0 +1,601 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0ff;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(120,60,200,0.10) 0%, transparent 60%),
+    radial-gradient(circle at 85% 75%, rgba(200,80,140,0.08) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+/* Boîte mot de passe – centrée, avec espace entre input et bouton */
+.password-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10,10,15,0.6);
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+}
+.password-box {
+  background: rgba(18,18,38,0.35);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(168,85,247,0.25);
+  border-radius: 24px;
+  padding: 3.2rem 2.6rem;
+  max-width: 480px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+  position: relative;
+  overflow: hidden;
+}
+.password-box p { margin-bottom: 2rem; } /* espace après le texte */
+.password-box input { margin-bottom: 2rem; } /* espace entre input et bouton */
+.password-box button { margin-top: 1.2rem; } /* espace au-dessus du bouton */
+.password-box::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 26px;
+  background: linear-gradient(45deg, #7c3aed, #d946ef, #ec4899);
+  background-size: 300%;
+  opacity: 0.12;
+  z-index: -1;
+  animation: glow-border 8s ease infinite;
+}
+@keyframes glow-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.password-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(124,58,237,0.28);
+  border-color: rgba(168,85,247,0.32);
+}
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 4.2rem;
+  text-align: center;
+  background: linear-gradient(90deg, #c084fc, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 2rem 0 1.5rem;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+h2 { font-size: 2.6rem; text-align: center; color: #d8b4fe; margin-bottom: 1.2rem; }
+h3 { font-size: 1.9rem; color: #c084fc; margin: 2rem 0 1rem; }
+p, label { font-size: 1.15rem; line-height: 1.7; opacity: 0.9; margin: 1rem 0; text-shadow: 0 1px 6px rgba(0,0,0,0.8); }
+.neon-btn {
+  padding: 1.1rem 2.8rem;
+  font-size: 1.18rem;
+  background: linear-gradient(135deg, #7c3aed, #d946ef);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(124,58,237,0.35);
+  transition: all 0.4s;
+  min-width: 220px; /* même taille pour Oui et Non */
+}
+.neon-btn:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 16px 48px rgba(124,58,237,0.55); }
+.yes { background: linear-gradient(135deg, #8b5cf6, #ec4899); box-shadow: 0 8px 28px rgba(139,92,246,0.4); }
+.no { background: linear-gradient(135deg, #475569, #64748b); box-shadow: 0 8px 28px rgba(71,85,105,0.35); }
+.buttons { display:flex; justify-content:center; gap: 2rem; flex-wrap:wrap; margin:2.5rem 0; }
+.hidden { display:none !important; }
+.hearts-container { position:fixed; inset:0; pointer-events:none; z-index:5; overflow:hidden; }
+.heart {
+  position:absolute;
+  font-size:2.4rem;
+  color:#c084fc;
+  opacity:0.65;
+  animation: fall 15s linear infinite;
+  text-shadow: 0 0 14px rgba(192,132,252,0.5);
+}
+@keyframes fall { to { transform:translateY(120vh); } }
+.form-group { margin:1.4rem 0; }
+.form-group label { display:block; margin-bottom:0.7rem; font-weight:500; color:#d8b4fe; }
+textarea {
+  width:100%;
+  min-height:140px;
+  padding:1.2rem;
+  background: rgba(25,25,45,0.75);
+  border:1px solid rgba(168,85,247,0.22);
+  border-radius:16px;
+  color:white;
+  resize:vertical;
+  margin-top:1rem;
+}
+textarea:focus {
+  outline:none;
+  border-color:#a855f7;
+  box-shadow:0 0 0 3px rgba(168,85,247,0.18);
+}
+.form-group input[type="radio"] { margin-right:1rem; transform: scale(1.3); }
+@media (max-width: 640px) {
+  body { font-size: 1rem; }
+  h1 { font-size: 3.2rem; }
+  .password-box { padding: 2.8rem 1.8rem; max-width: 95%; }
+  .message-box { padding: 2.6rem 2rem; }
+  .neon-btn { min-width: 100%; padding: 1rem 2rem; font-size: 1.1rem; }
+  .buttons { gap: 1.6rem; flex-direction: column; }
+  .form-group { margin: 1.2rem 0; }
+  textarea { min-height: 120px; }
+}
+
+}
+/* ── Boîtes principales des pages 2 et 3 (très près des bords) ── */
+#mainContent .container {
+  width: 98vw !important; /* presque toute la largeur */
+  max-width: 98% !important;
+  margin: 1rem auto !important; /* 1rem = ~16px de marge en haut/bas */
+  padding: 2rem 1.5rem !important; /* moins de padding latéral pour coller aux bords */
+  background: rgba(18,18,38,0.35);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(168,85,247,0.25);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+/* La boîte du mot de passe adopte exactement le style des champs de réponses */
+.password-box {
+  background: rgba(25,25,45,0.75) !important; /* même fond que textarea */
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(168,85,247,0.22) !important;
+  border-radius: 16px !important;
+  padding: 3rem 2.5rem !important;
+  max-width: 460px !important;
+  width: 90% !important;
+  margin: 2rem auto !important;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.4) !important;
+  transition: all 0.3s ease !important;
+}
+/* Espace entre les éléments du mot de passe et le bouton */
+.password-box p { margin-bottom: 2.2rem !important; }
+.password-box input { margin-bottom: 2.2rem !important; }
+.password-box button { margin-top: 1.4rem !important; }
+/* Même style premium pour les boîtes messages et formulaire */
+.message-box,
+#questionsSection,
+#questionsOui,
+#questionsNon {
+  background: rgba(25,25,45,0.75) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(168,85,247,0.22) !important;
+  border-radius: 16px !important;
+  padding: 3rem 2.8rem !important;
+  margin: 2.5rem auto !important;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.4) !important;
+}
+/* Hover premium sur toutes les boîtes */
+.password-box:hover,
+.message-box:hover,
+#questionsSection:hover,
+#questionsOui:hover,
+#questionsNon:hover {
+  border-color: #a855f7 !important;
+  box-shadow: 0 0 20px rgba(168,85,247,0.3), inset 0 2px 8px rgba(0,0,0,0.4) !important;
+  transform: translateY(-4px) !important;
+}
+/* Responsive : sur mobile, les boîtes collent encore plus aux bords */
+@media (max-width: 640px) {
+  #mainContent .container {
+    width: 99vw !important;
+    margin: 0.5rem auto !important;
+    padding: 1.8rem 1.2rem !important;
+    border-radius: 16px !important;
+  }
+  .password-box {
+    padding: 2.5rem 2rem !important;
+    max-width: 96% !important;
+  }
+  .message-box,
+  #questionsSection {
+    padding: 2.5rem 2rem !important;
+    margin: 1.5rem auto !important;
+  }
+}
+/* Style identique pour le champ mot de passe (comme les textarea et radio) */
+.password-box input[type="password"] {
+  width: 100%;
+  padding: 1.2rem 1.4rem;
+  font-size: 1.1rem;
+  background: rgba(25, 25, 45, 0.75) !important;
+  border: 1px solid rgba(168, 85, 247, 0.22) !important;
+  border-radius: 16px !important;
+  color: white !important;
+  transition: all 0.3s ease !important;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(6px) !important;
+}
+/* Effet focus premium (glow violet + bordure) */
+.password-box input[type="password"]:focus {
+  outline: none !important;
+  border-color: #a855f7 !important;
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.18), inset 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+  background: rgba(25, 25, 45, 0.85) !important;
+}
+/* Espace entre le champ mot de passe et le bouton (pour éviter qu'ils collent) */
+.password-box input[type="password"] {
+  margin-bottom: 2rem !important; /* ~32px d'espace */
+}
+/* Responsive mobile */
+@media (max-width: 640px) {
+  .password-box input[type="password"] {
+    padding: 1rem 1.2rem !important;
+    font-size: 1.05rem !important;
+  }
+}
+/* Conteneur animation plein écran */
+.petal-animation {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #05050d;
+  pointer-events: none;
+  overflow: hidden;
+}
+/* Conteneur des pétales */
+.petals {
+  position: absolute;
+  inset: 0;
+}
+/* Chaque pétale */
+.petal {
+  position: absolute;
+  font-size: 1.8rem;
+  color: #ec4899;
+  opacity: 0.8;
+  text-shadow: 0 0 10px rgba(236, 72, 153, 0.6);
+  animation: fall-petal 12s linear infinite;
+  will-change: transform;
+}
+@keyframes fall-petal {
+  0% { transform: translateY(-100vh) rotate(0deg); }
+  100% { transform: translateY(120vh) rotate(720deg); }
+}
+/* Nom Fellini au centre */
+.fellini-heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 10rem;
+  color: #ec4899;
+  text-shadow: 0 0 40px rgba(236, 72, 153, 0.9);
+  opacity: 0;
+  transition: opacity 1.8s ease;
+  pointer-events: none;
+  z-index: 10000;
+}
+.fellini-heart.visible {
+  opacity: 1;
+  animation: pulse 2s infinite alternate;
+}
+@keyframes pulse {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to { transform: translate(-50%, -50%) scale(1.08); }
+}
+/* Mobile : plus petit nom + moins de pétales */
+@media (max-width: 640px) {
+  .fellini-heart { font-size: 6rem; }
+}
+/* Conteneur animation plein écran */
+.destiny-animation {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  pointer-events: none;
+  overflow: hidden;
+}
+/* Aurore boréale (voile lumineux rose/violet) */
+.aurora {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(236,72,153,0.15), rgba(168,85,247,0.12), rgba(236,72,153,0.08));
+  opacity: 0;
+  animation: aurora-flow 12s ease-in-out infinite;
+  filter: blur(80px);
+}
+@keyframes aurora-flow {
+  0% { opacity: 0; transform: translate(0,0) rotate(0deg); }
+  20% { opacity: 0.7; transform: translate(10%, -10%) rotate(5deg); }
+  40% { opacity: 0.9; transform: translate(-5%, 15%) rotate(-8deg); }
+  60% { opacity: 0.8; transform: translate(15%, 5%) rotate(10deg); }
+  80% { opacity: 0.6; transform: translate(-10%, -5%) rotate(-5deg); }
+  100% { opacity: 0; transform: translate(0,0) rotate(0deg); }
+}
+/* Fil rouge du destin */
+.red-thread {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, #ff3366, transparent);
+  opacity: 0;
+  animation: thread-draw 8s ease-in-out forwards;
+  filter: blur(2px);
+}
+@keyframes thread-draw {
+  0% { opacity: 0; transform: scaleX(0); }
+  30% { opacity: 0.8; transform: scaleX(1.2); }
+  70% { opacity: 1; transform: scaleX(1); }
+  100% { opacity: 0.6; transform: scaleX(1); }
+}
+/* Nom Fellini au centre */
+.fellini-destiny {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 10rem;
+  color: #ff79c6;
+  text-shadow: 0 0 50px rgba(255, 121, 198, 0.9);
+  opacity: 0;
+  transition: opacity 2s ease, transform 2s ease;
+  pointer-events: none;
+  z-index: 10000;
+}
+.fellini-destiny.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.05);
+  animation: pulse-heart 2s infinite alternate;
+}
+@keyframes pulse-heart {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to { transform: translate(-50%, -50%) scale(1.08); }
+}
+/* Mobile : tout plus petit */
+@media (max-width: 640px) {
+  .fellini-destiny { font-size: 6rem; }
+}
+/* Réduction et aération globale sur mobile */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.95rem !important; /* base plus petite */
+  }
+  h2 {
+    font-size: 2.1rem !important; /* de 2.6rem → 2.1rem */
+    line-height: 1.3 !important;
+    margin-bottom: 1rem !important;
+  }
+  h3 {
+    font-size: 1.6rem !important; /* de 1.9rem → 1.6rem */
+    margin: 1.8rem 0 0.8rem !important;
+  }
+  p, label {
+    font-size: 1.05rem !important; /* de 1.15rem → 1.05rem */
+    line-height: 1.8 !important; /* plus aéré */
+    margin: 1.2rem 0 !important;
+  }
+  .neon-btn {
+    padding: 0.9rem 2.2rem !important;
+    font-size: 1.05rem !important;
+    min-width: 100% !important;
+  }
+  .submit-btn {
+    padding: 1.1rem 3rem !important;
+    font-size: 1.15rem !important;
+    min-width
+  }
+  
+  .video-glow-container {
+  position: relative;
+  max-width: 560px;
+  margin: 2rem auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #111;
+  padding: 3px;                     /* bordure très fine (réduite de 4px à 3px) */
+  box-shadow: 
+    0 0 18px rgba(255, 215, 0, 0.30),   /* glow principal plus fin et moins intense */
+    0 0 28px rgba(255, 215, 0, 0.18),   /* glow moyen réduit */
+    0 0 40px rgba(255, 215, 0, 0.08),   /* glow extérieur très subtil */
+    inset 0 0 10px rgba(255, 215, 0, 0.12); /* intérieur fin */
+  animation: yellow-glow-pulse 8s infinite ease-in-out;
+}
+
+@keyframes yellow-glow-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 18px rgba(255, 215, 0, 0.30),
+      0 0 28px rgba(255, 215, 0, 0.18),
+      0 0 40px rgba(255, 215, 0, 0.08),
+      inset 0 0 10px rgba(255, 215, 0, 0.12);
+  }
+  50% {
+    box-shadow: 
+      0 0 24px rgba(255, 215, 0, 0.40),
+      0 0 38px rgba(255, 215, 0, 0.25),
+      0 0 55px rgba(255, 215, 0, 0.12),
+      inset 0 0 14px rgba(255, 215, 0, 0.18);
+  }
+}
+
+.video-glow-container iframe {
+  border-radius: 17px;              /* légèrement moins arrondi que le conteneur */
+  display: block;
+  width: 100%;
+  height: auto;                     /* proportionnel à la largeur */
+}
+
+/* Mobile : bord encore plus fin et proportionnel */
+@media (max-width: 640px) {
+  .video-glow-container {
+    padding: 2px;                   /* bordure ultra-fine sur mobile */
+    margin: 1.5rem auto;
+    box-shadow: 
+      0 0 12px rgba(255, 215, 0, 0.25),
+      0 0 20px rgba(255, 215, 0, 0.15),
+      0 0 30px rgba(255, 215, 0, 0.07),
+      inset 0 0 8px rgba(255, 215, 0, 0.10);
+  }
+
+  .video-glow-container iframe {
+    border-radius: 15px;
+    height: 200px;                  /* hauteur fixe proportionnelle sur mobile */
+  }
+}
+  
+ /* Conteneur boutons – alignement horizontal parfait */
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin: 3rem auto;
+  max-width: 600px;
+}
+
+/* Bouton commun – forme ronde premium */
+.glow-btn {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  overflow: hidden;
+  background: rgba(25,25,45,0.6);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+/* Texte OUI / NON – style romantique premium */
+.glow-btn span {
+  position: relative;
+  z-index: 2;
+  font-family: 'Playfair Display', serif;   /* police élégante et romantique */
+  font-size: 2.4rem;
+  font-weight: 400;                         /* fin et classe */
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(255,255,255,0.6);
+  background: linear-gradient(90deg, #ff79c6, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: romantic-glow 5s infinite ease-in-out;
+}
+
+/* Glow romantique sur le texte */
+@keyframes romantic-glow {
+  0%, 100% { text-shadow: 0 0 15px rgba(255,121,198,0.6); }
+  50%      { text-shadow: 0 0 30px rgba(192,132,252,0.9); }
+}
+
+/* OUI : cœur violet/rose */
+.glow-btn.yes {
+  background: radial-gradient(circle at 30% 30%, rgba(236,72,153,0.35), transparent 60%);
+  box-shadow: 0 0 40px rgba(236,72,153,0.6);
+  animation: pulse-yes 6s infinite ease-in-out;
+}
+
+@keyframes pulse-yes {
+  0%, 100% { box-shadow: 0 0 40px rgba(236,72,153,0.6); }
+  50%      { box-shadow: 0 0 70px rgba(236,72,153,0.9); }
+}
+
+.glow-btn.yes:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 80px rgba(236,72,153,1);
+}
+
+/* NON : même style, mais bleu profond (plus sobre) */
+.glow-btn.no {
+  background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.35), transparent 60%);
+  box-shadow: 0 0 40px rgba(59,130,246,0.6);
+  animation: pulse-no 6s infinite ease-in-out;
+}
+
+@keyframes pulse-no {
+  0%, 100% { box-shadow: 0 0 40px rgba(59,130,246,0.6); }
+  50%      { box-shadow: 0 0 70px rgba(59,130,246,0.9); }
+}
+
+.glow-btn.no span {
+  background: linear-gradient(90deg, #60a5fa, #3b82f6);  /* bleu moderne et premium */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(59,130,246,0.6);
+}
+
+.glow-btn.no:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 80px rgba(59,130,246,1);
+}
+
+/* Mobile : boutons côte à côte + taille adaptée */
+@media (max-width: 640px) {
+  .buttons {
+    flex-direction: row !important;
+    gap: 1.8rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .glow-btn {
+    width: 100px;
+    height: 100px;
+  }
+
+  .glow-btn span {
+    font-size: 1.9rem;
+  }
+}
+  
+  /* Conteneur principal des emojis – couvre toute la page sans interférer */
+.hearts-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* Emoji – chute lente, fluide, sans bug */
+.romantic-emoji {
+  position: absolute;
+  top: -15vh; /* commence un peu plus haut pour fluidité */
+  left: var(--left-pos); /* positionnée via JS */
+  animation: romantic-fall linear forwards;
+  will-change: transform, opacity;
+  transform-origin: center;
+}
+
+/* Animation chute lente et élégante */
+@keyframes romantic-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.95;
+  }
+  95% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateY(130vh) rotate(1080deg); /* rotation complète + lente */
+    opacity: 0;
+  }
+}
+
+  #thanksForm {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#thanksForm.visible {
+  opacity: 1;
+}

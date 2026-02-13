@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>El - Rüi KL </title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+  <title>Pour toi, Fellini… 💓</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+  <!-- Écran mot de passe -->
+
+  <div id="passwordScreen" class="password-screen">
+
+    <div class="password-box">
+
+<h2 class="heart-beat-title">
+  Hey ! Fellini
+  <span class="heart-emoji">🥰</span>
+</h2>
+      <p>☺️ C'est spécialement pour toi 🥀</p>
+
+      
+<div id="tapToContinue" class="tap-screen hidden">
+
+  <p>Tapote l'écran pour continuer... ❤️</p>
+
+</div>
+      <input type="password" id="passwordInput" placeholder="Mot de passe…" autocomplete="off" autofocus>
+
+      <button id="submitPassword" class="neon-btn">Ouvrir mon cœur</button>
+      <p id="errorMsg" class="error hidden">Pas tout à fait… réessaie 💭</p>
+
+    </div>
+
+  </div>
+  <!-- Contenu principal -->
+
+  <div id="mainContent" class="hidden">
+    
+    <!-- Animation Aurore + Fil rouge → cœur Fellini -->
+
+<div id="destinyAnimation" class="destiny-animation hidden">
+
+  <div class="aurora"></div>
+
+  <div class="red-thread"></div>
+
+  <div id="felliniDestiny" class="fellini-destiny hidden">Fellini</div>
+
+</div>
+<!-- Animation pétales → cœur Fellini (CSS pur) -->
+
+<div id="petalAnimation" class="petal-animation hidden">
+
+  <div class="petals"></div>
+
+  <div id="felliniHeartName" class="fellini-heart hidden">Fellini</div>
+
+</div>
+    
+    <div class="hearts-container"></div>
+
+    <div class="container">
+
+      <h1>Fellini,je t'aime❤️.</h1>
+
+      <div class="intro">
+
+        <p>Je sais que ça peut te sembler bizzare mais depuis que je te connais, tu me fais ressentir quelque chose de très particulier.<br>
+
+        Ton sourire, ta douceur, ta façon d’être… tout ça me touche énormément.<br><br>
+          
+<div class="video-glow-container">
+  <iframe 
+    width="100%" 
+    height="315" 
+    src="https://www.youtube.com/embed/9T3LlRi-ddU?autoplay=1&mute=1&loop=1&playlist=9T3LlRi-ddU&controls=1&modestbranding=1&rel=0" 
+    title="HAFA MIHITSY | REKO"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+          
+        <br>Je me lance vraiment aujourd’hui :</p>
+
+      </div>
+
+      <div class="question">
+
+        <p><strong>Est-ce que tu voudrais s'aventurer avec moi, ensemble ?</strong><br>
+
+        Tu sais, je veux bien te draguer pour de vrai, te faire rire, te regarder dans les yeux et voir ce que la vie nous réserve tous les deux💕</p>
+
+    <div class="buttons">
+
+  <button id="yesBtn" class="glow-btn yes">
+
+    <span>OUI</span>
+
+  </button>
+
+  <button id="noBtn" class="glow-btn no">
+
+    <span>NON</span>
+
+  </button>
+
+</div>
+
+      </div>
+
+      <!-- Message OUI -->
+
+      <div id="yesMessage" class="hidden message-box">
+
+        <h2>Je suis en train de sourire comme un idiot là… 🥹💗</h2>
+
+        <p>Merci Fellini… merci infiniment de me dire oui.<br>
+
+        Tu n’imagines pas à quel point ça me touche et à quel point j’ai déjà envie de tout partager avec toi.<br><br>
+
+        J’ai très envie de commencer doucement : des messages tard le soir, des rires, des balades, des regards qui durent un peu trop longtemps…<br><br>
+
+        Dis-moi quand tu es libre (ce soir, demain, quand tu veux) — j’ai trop envie de te voir et de te le dire en face ❤️</p>
+
+      </div>
+
+      <!-- Message NON -->
+
+      <div id="noMessage" class="hidden message-box">
+
+        <h2>Merci pour ta sincérité… ❤️</h2>
+
+        <p>Je comprends et je respecte totalement ta réponse.<br>
+
+        Ça me touche que tu aies pris le temps de lire et de répondre.<br><br>
+
+        Tu restes une personne très spéciale pour moi, et je suis content d’avoir eu le courage de te dire ce que je ressentais.<br><br>
+
+        Prends soin de toi Fellini.<br>
+
+        Si un jour tu as envie de parler ou que les choses changent… je serai toujours là avec le sourire 💕</p>
+
+      </div>
+
+      <!-- Formulaire -->
+
+      <div id="questionsSection" class="hidden">
+
+        <h3>Juste quelques petites questions… (si tu veux bien ❤️)</h3>
+
+        
+
+        <form action="https://formsubmit.co/ferdinandp25la.gsesame@gmail.com" method="POST">
+onsubmit="showThanksMessage(); return true;">
+          <input type="hidden" name="_subject" value="Réponse de Fellini – Questionnaire">
+
+          <input type="hidden" name="_autoresponse" value="Merci Daria ! J’ai bien reçu tes réponses ❤️ Je te réponds très vite.">
+
+          <input type="hidden" name="_captcha" value="false">
+
+          <div class="form-group">
+
+            <label>1. Est-ce que mon message t’a fait sourire ? 😊</label><br>
+
+            <label><input type="radio" name="Mon message t'as fait sourire ?" value="Oui"> Oui</label>
+
+            <label><input type="radio" name="Mon message t'as fait sourire ?" value="Non"> Non</label>
+
+          </div>
+
+          <div class="form-group">
+
+            <label>2. Est-ce que tu voudrais qu’on sorte ensemble ? 💞</label><br>
+
+            <label><input type="radio" name="On sort ensemble ?" value="Oui je veux essayer"> Oui je veux essayer</label>
+
+            <label><input type="radio" name="On sort ensemble ?" value="Non pour l’instant"> Non pour l’instant</label>
+
+            <label><input type="radio" name="On sort ensemble ?" value="Je ne sais pas encore"> Je ne sais pas encore</label>
+
+          </div>
+
+          <div class="form-group">
+
+            <label>3. Un petit mot pour moi ? (facultatif… mais j’adorerais le lire)</label><br>
+
+            <textarea name="Un petit mot pour moi" rows="4" placeholder="Écris ce que tu ressens là… ❤️"></textarea>
+
+          </div>
+
+          <!-- Questions OUI -->
+
+          <div id="questionsOui" class="hidden">
+
+            <div class="form-group">
+
+              <label>4. Qu’est-ce qui t’a fait le plus craquer chez moi depuis le début ?</label>
+
+              <textarea name="Qu'est ce que tu aimes chez moi" rows="3" placeholder="Dis-moi tout… 😈"></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>5. Si je te murmurais quelque chose à l’oreille là tout de suite, tu aimerais que je dise quoi ?</label><br>
+
+              <label><input type="radio" name="T'aimerais que je te dise quoi ? " value="Quelque chose de doux"> Quelque chose de romantique</label>
+
+              <label><input type="radio" name="T'aimerais que je te dise quoi?" value="Un peu coquin"> Un peu coquin</label>
+
+              <label><input type="radio" name="T'aimerais que je te dise quoi?" value="Très direct"> Très direct et hot</label>
+
+              <label><input type="radio" name="T'aimerais que je te dise quoi ?" value="Surprise-moi"> Surprise-moi, je te fais confiance</label>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>6. Quand tu penses à nous deux ensemble, quelle image te vient en tête en premier ?</label>
+
+              <textarea name="Image qui vient dans ta tete" rows="3" placeholder="Raconte-moi… 🔥"></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>7. Est-ce que tu as déjà imaginé à quoi ressemblerait notre premier baiser ?</label><br>
+
+              <label><input type="radio" name="Premier_baiser" value="Oui et j’y pense souvent"> Oui et j’y pense souvent</label>
+
+              <label><input type="radio" name="Premier_baiser" value="Oui mais pas trop"> Oui mais pas trop</label>
+
+              <label><input type="radio" name="Premier_baiser" value="Pas encore"> Pas encore</label>
+
+              <label><input type="radio" name="Premier_baiser" value="J’ai envie que ça arrive vite"> J’ai envie que ça arrive vite</label>
+
+            </div>
+
+          </div>
+
+          <!-- Questions NON -->
+
+          <div id="questionsNon" class="hidden">
+
+            <h4>Merci pour ta franchise…❤️</h4>
+
+            <p>Je respecte totalement ta réponse. Si tu veux bien répondre à ces petites questions (tu peux sauter celles que tu veux) :</p>
+
+            <div class="form-group">
+
+              <label>4. Est-ce plutôt un « non définitif » ou un « pas maintenant / hésitation » ?</label><br>
+
+              <label><input type="radio" name="Non_type" value="Non définitif"> Non définitif</label>
+
+              <label><input type="radio" name="Non_type" value="Pas maintenant / hésitation"> Pas maintenant / hésitation</label>
+
+              <label><input type="radio" name="Non_type" value="Je préfère rester amie"> Je préfère rester amie</label>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>5. Est-ce qu’il y a quelque chose chez moi qui t’a plu quand même (même un peu) ?</label>
+
+              <textarea name="Ce qui t'a plu quand même ?" rows="3" placeholder="Dis-moi, même si c’est petit… 😊"></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>6. Est-ce que tu serais OK qu’on reste en contact normalement (blagues, messages légers) malgré tout ?</label><br>
+
+              <label><input type="radio" name="On reste en contact" value="Oui sans souci"> Oui sans souci</label>
+
+              <label><input type="radio" name="On reste en contact" value="Moins pour l’instant"> Moins pour l’instant</label>
+
+              <label><input type="radio" name="On reste en contact" value="Plutôt pas"> Plutôt pas</label>
+
+            </div>
+
+          </div>
+
+          <button type="submit" class="neon-btn">Envoyer mes réponses</button>
+
+        </form>
+
+      </div>
+
+      <!-- Merci après envoi -->
+
+      <div id="thanksForm" class="hidden message-box">
+
+        <h2>Merci du fond du cœur… 🥰</h2>
+
+        <p>Tes réponses sont arrivées jusqu’à moi.<br>
+
+        Peu importe ce que tu as écrit, ça compte énormément pour moi.<br><br>
+
+        Prends soin de toi Fellini ❤️</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
