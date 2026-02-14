@@ -599,3 +599,291 @@ textarea:focus {
 #thanksForm.visible {
   opacity: 1;
 }
+ .love-animation {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  background: rgba(5,5,13,0.4);
+}
+  }
+  
+/* Signature "Ferdinand" en bas à gauche */
+
+.signature {
+
+  margin-top: 2.5rem;
+
+  font-family: 'Playfair Display', serif;
+
+  font-size: 1.5rem;
+
+  color: #c084fc;
+
+  text-align: right;
+
+  opacity: 0.8;
+
+  font-style: italic;
+
+  letter-spacing: 1px;
+
+  position: relative;
+
+  padding-right: 1.5rem;
+
+}
+
+.signature::before {
+
+  content: "—";
+
+  position: absolute;
+
+  right: 0;
+
+  color: #ec4899;
+
+  font-size: 1.8rem;
+
+  opacity: 0.7;
+
+}
+
+/* Mobile : un peu plus petit */
+
+@media (max-width: 640px) {
+
+  .signature {
+
+    font-size: 1.3rem;
+
+    margin-top: 2rem;
+
+  }
+
+}
+
+  /* Espacement global entre les questions et leurs champs (réduit et aéré) */
+
+.form-group {
+
+  margin: 0.6rem auto;              /* espace vertical entre chaque question */
+
+  max-width: 600px;                 /* largeur globale des champs */
+
+  text-align: left;
+
+}
+
+/* Labels des questions (texte au-dessus du champ) */
+
+.form-group label:first-child {
+
+  display: block;
+
+  margin-bottom: 0.1rem;            /* espace entre la question et le champ */
+
+  font-size: 1.1rem;
+
+  color: #d8b4fe;
+
+  font-weight: 600;
+
+}
+
+/* Textarea : ligne droite simple + glow violet/rose au focus */
+
+#questionsSection textarea,
+
+#questionsOui textarea,
+
+#questionsNon textarea {
+
+  width: 100%;
+
+  max-width: 600px;
+
+  height: 48px;                     /* hauteur fixe = une ligne droite */
+
+  margin: 0.6rem auto;              /* espace réduit */
+
+  padding: 0 1.2rem;
+
+  font-size: 1.05rem;
+
+  background: rgba(25,25,45,0.6);
+
+  border: 1px solid rgba(168,85,247,0.35);
+
+  border-radius: 10px;
+
+  color: white;
+
+  transition: all 0.3s ease;
+
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.3);
+
+  resize: none;                     /* pas de redimensionnement */
+
+  overflow: hidden;
+
+  line-height: 1.4;                 /* texte centré verticalement */
+
+}
+
+/* Glow violet/rose qui s'illumine sur les bords au focus */
+
+#questionsSection textarea:focus,
+
+#questionsOui textarea:focus,
+
+#questionsNon textarea:focus {
+
+  outline: none;
+
+  border-color: #a855f7;
+
+  box-shadow: 0 0 0 4px rgba(168,85,247,0.25), inset 0 1px 4px rgba(0,0,0,0.3);
+
+  background: rgba(25,25,45,0.85);
+
+}
+
+/* Choix multiples (radios) : aérés et centrés */
+
+.form-group label[for] {  /* labels des radios */
+
+  display: inline-flex;
+
+  align-items: left;
+
+  margin: 0.7rem 1.4rem;    /* espace horizontal + vertical entre les choix */
+
+  font-size: 1.05rem;
+
+  color: #e0e0ff;
+
+  cursor: pointer;
+
+}
+
+.form-group input[type="radio"] {
+
+  margin-right: 0.8rem;
+
+  transform: scale(1.3);
+
+  accent-color: #a855f7;    /* couleur violette du point radio */
+
+}
+
+/* Mobile : tout reste touch-friendly et aéré */
+
+@media (max-width: 660px) {
+
+  .form-group {
+
+    margin: 1rem auto;
+
+  }
+
+  .form-group label:first-child {
+
+    margin-bottom: 0.7rem;
+
+  }
+
+  #questionsSection textarea,
+
+  #questionsOui textarea,
+
+  #questionsNon textarea {
+
+    max-width: 98%;
+
+    height: 46px;
+
+    padding: 0 1rem;
+
+    font-size: 1rem;
+
+  }
+
+  .form-group label[for] {
+
+    margin: 0.6rem 0.6rem;
+
+  }
+
+}
+
+
+/* Agrandir les boîtes des questions 4, 5, 6 (dans #questionsOui) */
+
+#questionsOui
+#questionsNon{
+
+  max-width: 100% !important;          /* presque toute la largeur de la boîte parente */
+
+  margin: 0.4rem auto !important;     /* réduit la marge pour coller aux bords */
+
+  padding: 1rem 0.8rem !important;  /* padding interne un peu plus petit pour maximiser l'espace */
+
+}
+
+/* Chaque .form-group dans #questionsOui : très large, bords proches */
+
+#questionsOui.form-group
+#questionsNon.form-group {
+
+  max-width: 100% !important;          /* touche presque les bords de la boîte */
+
+  margin: 0.6rem auto !important;     /* espace vertical entre questions */
+
+  padding: 0 0.1rem;                  /* très peu de padding latéral */
+
+}
+
+/* Textarea et radios dans ces questions : large et touchant les bords */
+
+#questionsOui textarea,
+#questionsNon textarea,
+#questionsOui input[type="radio"]
+#questionsNon input[type="radio"] {
+
+  width: 100% !important;
+
+  max-width: 100% !important;         /* prend toute la largeur disponible */
+
+  margin: 0.3rem 0 !important;
+
+}
+
+/* Mobile : encore plus proche des bords */
+
+@media (max-width: 720px) {
+
+  #questionsOui
+  #questionsNon {
+
+    max-width: 100% !important;
+
+    margin: 0.6rem auto !important;
+
+    padding: 1.8rem 1.2rem !important;
+
+  }
+
+  #questionsOui.form-group
+  #questionsNon.form-group {
+
+    max-width: 100% !important;
+
+    margin: 1rem auto !important;
+
+  }
+
+}
