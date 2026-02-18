@@ -1,4 +1,4 @@
-const correctPassword = "Fellini";
+const correctPassword = "Ferdinand0146";
 
 // Validation du mot de passe
 document.getElementById("submitPassword").addEventListener("click", () => {
@@ -99,3 +99,30 @@ function showThanksMessage() {
   // Scroll doux vers le message merci (très utile sur mobile)
   document.getElementById("thanksForm").scrollIntoView({ behavior: "smooth" });
 }
+
+// Gestion fiable de l'envoi du formulaire (mobile + ordinateur)
+document.getElementById("myForm").addEventListener("submit", function(event) {
+  // NE PAS bloquer l'envoi (FormSubmit a besoin que le form parte normalement)
+  // event.preventDefault();  ← IMPORTANT : NE PAS METTRE ÇA !
+
+  // Petit délai pour laisser l'envoi se lancer (mobile en a besoin)
+  setTimeout(() => {
+    // Cacher tout ce qui est lié aux questions
+    document.getElementById("questionsSection").classList.add("hidden");
+    
+    // Cacher les messages Oui/Non si visibles
+    const yesMsg = document.getElementById("yesMessage");
+    const noMsg = document.getElementById("noMessage");
+    if (yesMsg) yesMsg.classList.add("hidden");
+    if (noMsg) noMsg.classList.add("hidden");
+
+    // Afficher le message de remerciement
+    const thanks = document.getElementById("thanksForm");
+    thanks.classList.remove("hidden");
+
+    // Scroll vers le merci (très important sur mobile)
+    thanks.scrollIntoView({ behavior: "smooth" });
+
+    console.log("Formulaire envoyé → merci affiché");
+  }, 800); // 800 ms = délai sûr sur mobile
+});
