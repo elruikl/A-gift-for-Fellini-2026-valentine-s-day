@@ -100,17 +100,18 @@ function showThanksMessage() {
   document.getElementById("thanksForm").scrollIntoView({ behavior: "smooth" });
 }
 
-// Gestion fiable de l'envoi du formulaire (mobile + ordinateur)
+// Gestion fiable de l'envoi du formulaire (marche sur mobile + ordinateur)
 document.getElementById("myForm").addEventListener("submit", function(event) {
-  // NE PAS bloquer l'envoi (FormSubmit a besoin que le form parte normalement)
-  // event.preventDefault();  ← IMPORTANT : NE PAS METTRE ÇA !
+  // IMPORTANT : NE PAS mettre event.preventDefault() ici !
+  // On laisse le formulaire partir normalement vers FormSubmit.co
 
-  // Petit délai pour laisser l'envoi se lancer (mobile en a besoin)
+  console.log("Bouton Envoyer cliqué – envoi en cours...");
+
+  // Petit délai pour laisser le navigateur envoyer le formulaire avant de changer l’affichage
   setTimeout(() => {
-    // Cacher tout ce qui est lié aux questions
+    // Cacher les questions et messages Oui/Non
     document.getElementById("questionsSection").classList.add("hidden");
     
-    // Cacher les messages Oui/Non si visibles
     const yesMsg = document.getElementById("yesMessage");
     const noMsg = document.getElementById("noMessage");
     if (yesMsg) yesMsg.classList.add("hidden");
@@ -123,6 +124,6 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     // Scroll vers le merci (très important sur mobile)
     thanks.scrollIntoView({ behavior: "smooth" });
 
-    console.log("Formulaire envoyé → merci affiché");
+    console.log("Merci affiché !");
   }, 800); // 800 ms = délai sûr sur mobile
 });
