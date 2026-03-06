@@ -1,4 +1,4 @@
-const correctPassword = "Ferdinand";
+const correctPassword = "Ferdinand0146";
 
 // Validation du mot de passe
 document.getElementById("submitPassword").addEventListener("click", () => {
